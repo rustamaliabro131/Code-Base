@@ -1,0 +1,490 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Georgia', serif;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ---------- Entry Screen ---------- */
+#entryScreen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ffe4ec 0%, #ffb6c1 50%, #ff91a4 100%);
+  z-index: 10;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#entryScreen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.entry-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 48px 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(255, 105, 135, 0.3);
+  max-width: 400px;
+  width: 90%;
+  animation: floatIn 0.6s ease-out;
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.entry-icon {
+  font-size: 56px;
+  margin-bottom: 12px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.entry-card h1 {
+  font-size: 28px;
+  color: #d6336c;
+  margin-bottom: 6px;
+  font-family: 'Georgia', serif;
+}
+
+.entry-card p {
+  color: #888;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.entry-card input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid #f0c0d0;
+  border-radius: 14px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+  text-align: center;
+  font-family: inherit;
+}
+
+.entry-card input:focus {
+  border-color: #d6336c;
+}
+
+.entry-card button {
+  margin-top: 16px;
+  padding: 14px 48px;
+  background: linear-gradient(135deg, #d6336c, #ff6b8a);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+.entry-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(214, 51, 108, 0.4);
+}
+
+.entry-card button:active {
+  transform: translateY(0);
+}
+
+/* ---------- Birthday Screen ---------- */
+#birthdayScreen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #e8a0bf 85%, #ffb6c1 100%);
+  overflow: hidden;
+  transition: opacity 0.8s ease;
+}
+
+#birthdayScreen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Particles ---------- */
+#particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.particle.star {
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle var(--dur) ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+.particle.sparkle {
+  width: 8px;
+  height: 8px;
+  background: #ffd700;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: float var(--dur) ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+  50% { transform: translateY(-30px) rotate(180deg); opacity: 1; }
+}
+
+.particle.heart {
+  font-size: 16px;
+  animation: heartFloat var(--dur) ease-in-out infinite;
+}
+
+@keyframes heartFloat {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; }
+  50% { transform: translateY(-40px) scale(1.2); opacity: 1; }
+}
+
+/* ---------- Room Decor ---------- */
+.room-decor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Window */
+.window {
+  position: absolute;
+  top: 6%;
+  right: 8%;
+  width: 100px;
+  height: 130px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.moon {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff5d4, #ffeaa7);
+  box-shadow: 0 0 50px rgba(255, 234, 167, 0.6);
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+}
+
+.stars::before,
+.stars::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  box-shadow:
+    20px 30px rgba(255, 255, 255, 0.3),
+    45px 20px rgba(255, 255, 255, 0.25),
+    60px 50px rgba(255, 255, 255, 0.2),
+    30px 70px rgba(255, 255, 255, 0.3),
+    70px 80px rgba(255, 255, 255, 0.15),
+    15px 90px rgba(255, 255, 255, 0.25);
+}
+
+/* Bed */
+.bed {
+  position: absolute;
+  bottom: 6%;
+  left: 8%;
+  width: 140px;
+  height: 60px;
+  pointer-events: none;
+}
+
+.bed-base {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  border-radius: 6px;
+  outline: 1px solid rgba(255, 182, 193, 0.15);
+  background: transparent;
+}
+
+.pillow {
+  position: absolute;
+  bottom: 18px;
+  left: 10px;
+  width: 35px;
+  height: 18px;
+  border-radius: 10px;
+  background: transparent;
+}
+
+.blanket {
+  position: absolute;
+  bottom: 8px;
+  left: 30px;
+  width: 100px;
+  height: 22px;
+  border-radius: 0 10px 6px 6px;
+  background: linear-gradient(90deg, rgba(255, 107, 138, 0.15), rgba(214, 51, 108, 0.15));
+  outline: 1px solid rgba(255, 182, 193, 0.2);
+}
+
+/* Lamp */
+.lamp {
+  position: absolute;
+  bottom: 10%;
+  right: 18%;
+  width: 36px;
+  height: 100px;
+}
+
+.lamp-stand {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 60px;
+  background: linear-gradient(180deg, rgba(255, 215, 0, 0.3), rgba(255, 182, 193, 0.2));
+  border-radius: 2px;
+}
+
+.lamp-shade {
+  position: absolute;
+  bottom: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 28px;
+  background: linear-gradient(180deg, rgba(255, 215, 0, 0.5), rgba(255, 179, 71, 0.35));
+  border-radius: 22px 22px 4px 4px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+}
+
+.lamp-glow {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05) 40%, transparent 70%);
+  border-radius: 50%;
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+}
+
+/* ---------- Greeting ---------- */
+.greeting {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: fadeUp 1s ease-out 0.3s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.greeting-sub {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.greeting-title {
+  font-size: clamp(48px, 10vw, 80px);
+  font-family: 'Georgia', serif;
+  color: #ffd700;
+  text-shadow:
+    0 0 20px rgba(255, 215, 0, 0.4),
+    0 4px 15px rgba(0, 0, 0, 0.3);
+  letter-spacing: 3px;
+  line-height: 1.1;
+}
+
+.greeting-name {
+  font-size: clamp(32px, 6vw, 52px);
+  font-family: 'Georgia', serif;
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(214, 51, 108, 0.5);
+  margin-top: 8px;
+}
+
+.greeting-name::before {
+  content: '💖 ';
+}
+
+/* ---------- Cards ---------- */
+.cards {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 16px;
+  animation: fadeUp 1s ease-out 0.6s both;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 28px 32px;
+  width: 210px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  pointer-events: auto;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+.card:active {
+  transform: translateY(-3px) scale(0.98);
+}
+
+.card-icon {
+  font-size: 44px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));
+}
+
+.card h3 {
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 6px;
+  font-family: 'Georgia', serif;
+}
+
+.card p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* ---------- Popup ---------- */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  transition: opacity 0.4s ease;
+}
+
+.popup-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.popup-box {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 40px 36px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  animation: popIn 0.4s ease-out;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.popup-icon {
+  font-size: 48px;
+  margin-bottom: 14px;
+}
+
+.popup-box p {
+  font-size: 18px;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  font-family: 'Georgia', serif;
+}
+
+.popup-box button {
+  padding: 12px 36px;
+  background: linear-gradient(135deg, #d6336c, #ff6b8a);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+.popup-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(214, 51, 108, 0.4);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .entry-card { padding: 32px 24px; }
+  .card { width: 160px; padding: 20px 16px; }
+  .window, .bed, .lamp { display: none; }
+}

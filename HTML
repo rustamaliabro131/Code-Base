@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Entry Screen -->
+  <div id="entryScreen">
+    <div class="entry-card">
+      <div class="entry-icon">🎂</div>
+      <h1>Welcome!</h1>
+      <p>What's your name?</p>
+      <input type="text" id="nameInput" placeholder="Enter your name..." maxlength="30" />
+      <button id="enterBtn">Enter</button>
+    </div>
+  </div>
+
+  <!-- Birthday Screen -->
+  <div id="birthdayScreen" class="hidden">
+    <div id="particles"></div>
+
+    <div class="room-decor">
+      <div class="window">
+        <div class="moon"></div>
+        <div class="stars"></div>
+      </div>
+      <div class="bed">
+        <div class="bed-base"></div>
+        <div class="pillow"></div>
+        <div class="blanket"></div>
+      </div>
+      <div class="lamp">
+        <div class="lamp-stand"></div>
+        <div class="lamp-shade"></div>
+        <div class="lamp-glow"></div>
+      </div>
+    </div>
+
+    <div class="greeting">
+      <div class="greeting-sub">Wishing you the happiest day</div>
+      <h1 class="greeting-title">Happy Birthday</h1>
+      <h2 class="greeting-name" id="displayName"></h2>
+    </div>
+
+    <div class="cards">
+      <div class="card" data-message="A magical castle by the sea, where every room tells a story and the stars dance just for you. Your dream place awaits!">
+        <div class="card-icon">🏰</div>
+        <h3>Your Dream Place</h3>
+        <p>Click to discover</p>
+      </div>
+      <div class="card" data-message="A cozy room filled with fairy lights, soft pink walls, a canopy bed with floating curtains, and a window that overlooks a glowing garden. This is your dream room!">
+        <div class="card-icon">🛏️</div>
+        <h3>Your Dream Room</h3>
+        <p>Click to discover</p>
+      </div>
+    </div>
+
+    <div id="popupOverlay" class="popup-overlay hidden">
+      <div class="popup-box">
+        <div class="popup-icon">✨</div>
+        <p id="popupText"></p>
+        <button id="popupClose">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
